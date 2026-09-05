@@ -1,528 +1,488 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Marks the document as script-capable before first paint, so the
+       .reveal hidden state applies only when the observer that clears it
+       can actually run. No JS means everything renders plainly visible. -->
+  <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed Irfan — Portfolio</title>
-  <meta name="description" content="Professional portfolio of Mohamed Irfan (Rizirfan) - Computer Science Student, Web Developer, and UI/UX Designer." />
-  
-  <!-- SEO Meta Tags -->
-  <meta property="og:title" content="Mohamed Irfan — Portfolio" />
-  <meta property="og:description" content="Computer Science student passionate about cloud platforms, automation, web development, and design." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#FAF9F6" />
+  <title>Mohamed Irfan | Cloud &amp; Software Developer</title>
+  <meta name="description" content="Mohamed Irfan (Rizirfan) builds cloud software end to end: FastAPI backends, React frontends, and containerized deployments. Computer Science student shipping products that feel finished." />
+
+  <meta property="og:title" content="Mohamed Irfan | Cloud &amp; Software Developer" />
+  <meta property="og:description" content="Cloud software built to ship: FastAPI, React, TypeScript, Docker. Design, build and deploy, end to end." />
   <meta property="og:type" content="website" />
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- CSS -->
+
+  <link rel="icon" href="assets/avatar.png" />
+  <link rel="preload" as="image" href="assets/avatar.png" fetchpriority="high" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400&family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <!-- Background Accents -->
-  <div class="background-canvas" aria-hidden="true"></div>
-  <div class="background-grid" aria-hidden="true"></div>
+<body data-cursor="dark">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="container header__inner">
-      <a class="logo" href="#hero">
-        <div class="logo-icon" aria-hidden="true">M</div>
-        <span>Mohamed Irfan</span>
-      </a>
-
-      <nav class="nav" aria-label="Primary Navigation">
-        <a class="nav-link" href="#hero">Home</a>
-        <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#contact">Contact</a>
-        <a class="btn btn--primary" href="#contact">Hire Me</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" type="button">
-          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        </button>
-      </nav>
-
-      <button class="burger" type="button" aria-label="Toggle navigation menu" aria-controls="mobileMenu" aria-expanded="false">
-        <span></span><span></span><span></span>
+  <!-- ============================== NAVIGATION ============================== -->
+  <nav class="site-nav" id="siteNav">
+    <div class="container nav-inner">
+      <button class="logo-btn" aria-label="Mohamed Irfan home" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <span class="logo-mark" aria-hidden="true">Mohamed Irfan</span>
       </button>
+      <ul class="nav-links" aria-label="Site sections">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="mailto:mohdirfanr0329@gmail.com" class="icon-link" aria-label="Email Mohamed Irfan">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <span class="icon-link-label">Email</span>
+        </a>
+        <a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Visit Mohamed Irfan's GitHub profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <span class="icon-link-label">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Visit Mohamed Irfan's LinkedIn profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2c.5-1 1.8-2.2 4-2.2 4.3 0 5.2 2.8 5.2 6.5V24h-4v-8.5c0-2-.3-4.5-2.7-4.5-2.7 0-3.1 2.1-3.1 4.3V24h-4V8z"/></svg>
+          <span class="icon-link-label">LinkedIn</span>
+        </a>
+      </div>
     </div>
-  </header>
-
-  <!-- Mobile Drawer Menu -->
-  <nav class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <a class="nav-link" href="#hero">Home</a>
-    <a class="nav-link" href="#projects">Projects</a>
-    <a class="nav-link" href="#about">About</a>
-    <a class="nav-link" href="#contact">Contact</a>
-    <a class="btn btn--primary" style="margin-top: 12px; width: 200px;" href="#contact">Hire Me</a>
-    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle light/dark theme" type="button" style="margin-top: 16px;">
-      <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-    </button>
   </nav>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section class="hero" id="hero" aria-label="Introduction">
+  <main id="main">
+    <!-- ============================== HERO ============================== -->
+    <section id="hero" class="hero">
       <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="hero-pill">
-            <span></span> Available for Remote Opportunities
-          </div>
-          <h1 class="hero-title">
-            Crafting Premium <br/>
-            <span class="gradient-text">Cloud & Software</span> <br/>
-            Development
-          </h1>
-          <p class="hero-desc">
-            I’m <strong>Mohamed Irfan</strong> (Rizirfan). A Computer Science student passionate about cloud and software development. I build scalable, accessible, and high-performance applications.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn--primary" href="#projects">Explore My Work</a>
-            <a class="btn btn--secondary" href="#contact">Get in Touch</a>
-          </div>
-
-          <div class="hero-stats">
-            <div class="stat-item">
-              <span class="stat-num">39</span>
-              <span class="stat-label">Repositories</span>
+        <div class="hero-photo reveal">
+          <figure class="hero-photo-frame">
+            <div class="hero-photo-clip">
+              <img class="hero-portrait" src="assets/avatar.png" alt="Mohamed Irfan" width="500" height="500" />
             </div>
-            <div class="stat-item">
-              <span class="stat-num">100%</span>
-              <span class="stat-label">Response Rate</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-num">Remote</span>
-              <span class="stat-label">Availability</span>
-            </div>
-          </div>
+            <figcaption class="hero-caption">
+              <span class="hero-caption-name">Mohamed Irfan</span>
+            </figcaption>
+          </figure>
         </div>
-
-        <div class="hero-showcase">
-          <div class="glass-card hero-card">
-            <div class="avatar-wrapper">
-              <img class="avatar-img" src="assets/avatar.png" alt="Mohamed Irfan" />
-              <div class="avatar-status" aria-hidden="true"></div>
-            </div>
-            
-            <h2 class="hero-card-name">Mohamed Irfan</h2>
-            <p class="hero-card-title">Cloud & Software Developer</p>
-
-            <div class="hero-card-featured">
-              <h3 class="featured-label">Featured Projects</h3>
-              <div class="featured-thumbs" aria-label="Featured projects quick nav">
-                <div class="featured-thumb" data-target="teledrive" title="View TeleDrive Details">
-                  <img src="assets/teledrive.png" alt="TeleDrive Preview" />
-                </div>
-                <div class="featured-thumb" data-target="personal-cloud" title="View Multi Drive Details">
-                  <img src="assets/multidrive.png" alt="MultiDrive Preview" />
-                </div>
-                <div class="featured-thumb" data-target="filenest" title="View FileNest Details">
-                  <img src="assets/filenest.png" alt="FileNest Preview" />
-                </div>
-              </div>
-            </div>
+        <div class="hero-copy">
+          <p class="hero-eyebrow reveal">Cloud &amp; Software Developer</p>
+          <h1 class="hero-title">Software built to ship, end to end.</h1>
+          <p class="hero-invite reveal">FastAPI backends, React frontends, Docker deployments. I work alongside your team from data model to deployed URL, and I care about clean structure, accessibility, and products that feel finished.</p>
+          <div class="cta-row hero-cta reveal">
+            <a href="#contact" class="btn btn-primary">Start a conversation</a>
+            <a href="#work" class="btn btn-ghost">See selected work</a>
+            <a href="experience.html" class="btn btn-ghost">See experience</a>
           </div>
         </div>
       </div>
+
+      <!-- Proof inside the first screen: the loop this practice runs on.
+           Every claim here is carried by a project below. -->
+      <div class="container hero-proof reveal" style="padding-top: 3%; padding-bottom: 3%;">
+        <ol class="proof-row">
+          <li class="proof-step">
+            <span class="proof-node"><svg class="proof-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 19.4 5.9 15.2 16.3 4.8a1.9 1.9 0 0 1 2.7 0 1.9 1.9 0 0 1 0 2.7L8.6 17.9z"></path><path d="M15.1 6 18 8.9"></path><path d="M6 15.3 8.6 17.9"></path></svg></span>
+            <div class="proof-body">
+              <p class="proof-years">Design</p>
+              <h2 class="proof-title">Interfaces that respect the user</h2>
+              <p class="proof-note">Clean layouts, accessible patterns, and type that carries the hierarchy.</p>
+            </div>
+          </li>
+          <li class="proof-step">
+            <span class="proof-node"><svg class="proof-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
+            <div class="proof-body">
+              <p class="proof-years">Build</p>
+              <h2 class="proof-title">Backends with real architecture</h2>
+              <p class="proof-note">FastAPI, Redis, PostgreSQL: systems that stay coherent as they grow.</p>
+            </div>
+          </li>
+          <li class="proof-step">
+            <span class="proof-node"><svg class="proof-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6V11.4"></path><path d="M12 12.4C9.2 12.4 7 10.2 7 7.4c2.8 0 5 2.2 5 5z"></path><path d="M12.5 10.8c0-2.8 2.2-5 5-5 0 2.8-2.2 5-5 5z"></path></svg></span>
+            <div class="proof-body">
+              <p class="proof-years">Ship</p>
+              <h2 class="proof-title">Containerized, deployed, running</h2>
+              <p class="proof-note">Docker, CI/CD and cloud platforms: from repo to live service.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
     </section>
 
-    <!-- INFINITE TEXT MARQUEE -->
-    <div class="hero-marquee" aria-hidden="true">
-      <div class="marquee-inner">
-        <span>Cloud platforms</span>
-        <span>UI/UX Design</span>
-        <span>FastAPI & Python</span>
-        <span>React & TypeScript</span>
-        <span>Google Drive Integration</span>
-        <span>Docker & Docker Compose</span>
-        <span>Git Automation</span>
-        <span>Accessibility</span>
-        <!-- Repeated for scroll loop -->
-        <span>Cloud platforms</span>
-        <span>UI/UX Design</span>
-        <span>FastAPI & Python</span>
-        <span>React & TypeScript</span>
-        <span>Google Drive Integration</span>
-        <span>Docker & Docker Compose</span>
-        <span>Git Automation</span>
-        <span>Accessibility</span>
-      </div>
-    </div>
-
-    <!-- PROJECTS SECTION -->
-    <section class="section" id="projects">
+    <!-- ============================== CASE STUDIES ============================== -->
+    <section id="work" class="case-studies">
       <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Selected Work</span>
-          <h2 class="section-title">Featured Projects</h2>
-          <p class="section-desc">
-            A curated selection of my core engineering projects, showcasing end-to-end setups, API structures, and visual designs. Click any card to explore its features.
-          </p>
-        </div>
+        <header class="section-head reveal">
+          <h2>Selected work</h2>
+          <p>A small set that shows the range: cloud platforms, real-time systems, and products built end to end.</p>
+        </header>
 
-        <!-- Filter tabs -->
-        <div class="filter-wrapper">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="react">React / Vite</button>
-          <button class="filter-btn" data-filter="backend">Backend & Cloud</button>
-          <button class="filter-btn" data-filter="typescript">TypeScript</button>
-          <button class="filter-btn" data-filter="htmlcss">HTML & CSS</button>
-        </div>
+        <div class="case-grid stagger">
+          <a class="case-card case-feature reveal" href="aeroops.html" aria-label="Read the AeroLogistics (AEROOPS) case study">
+            <div class="case-thumb">
+              <img decoding="async" loading="lazy" src="assets/aero/Screenshot 2026-08-13 231533.png" alt="AEROOPS: a UAV-based aerial cargo logistics platform">
+            </div>
+            <div class="case-text">
+              <span class="case-index">Featured case study</span>
+              <h3>AEROOPS: aerial cargo, mission to delivery</h3>
+              <p>A UAV-based aerial cargo logistics platform that takes each shipment from cargo request through dispatch, flight tracking, and delivery to mission completion.</p>
+              <div class="tag-row">
+                <span class="tag">System Design</span>
+                <span class="tag">Backend</span>
+                <span class="tag">UAV / Drones</span>
+              </div>
+              <span class="case-more" aria-hidden="true">Read the case study<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+            </div>
+          </a>
 
-        <!-- Projects Grid -->
-        <div class="projects-grid" id="projectsGrid">
-          <!-- TeleDrive -->
-          <article class="glass-card project-card" data-category="backend react" data-project-id="teledrive">
-            <div class="project-card__media">
-              <img src="assets/teledrive.png" alt="TeleDrive application mockup" />
-              <div class="project-card__overlay">
-                <span class="btn btn--primary">View Architecture & Details</span>
-              </div>
+          <a class="case-card reveal" href="https://github.com/Rizirfan/Teledrive" target="_blank" rel="noopener noreferrer" aria-label="View TeleDrive on GitHub">
+            <div class="case-thumb">
+              <img decoding="async" loading="lazy" src="assets/teledrive.png" alt="TeleDrive: cloud storage built on Telegram channels">
             </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">
-                TeleDrive
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </h3>
-              <p class="project-card__desc">A production-ready cloud storage web application that abstracts Telegram channels as storage backends via API workers.</p>
-              <ul class="project-card__tags">
-                <li class="tag">Python</li>
-                <li class="tag">FastAPI</li>
-                <li class="tag">React</li>
-                <li class="tag">Redis</li>
-                <li class="tag">Docker</li>
-              </ul>
-              <div class="project-card__links">
-                <button class="btn btn--secondary btn-modal-trigger" data-project-id="teledrive">Details</button>
-                <a class="btn btn--primary" href="https://github.com/Rizirfan/Teledrive" target="_blank" rel="noopener">Code</a>
+            <div class="case-text">
+              <span class="case-index">Cloud storage</span>
+              <h3>TeleDrive: cloud storage that hides its backbone</h3>
+              <p>Async upload workers, Redis queues, and PostgreSQL metadata turn Telegram channels into a dependable storage backend.</p>
+              <div class="tag-row">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">React</span>
+                <span class="tag">Docker</span>
               </div>
+              <span class="case-more" aria-hidden="true">View on GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
             </div>
-          </article>
+          </a>
 
-          <!-- personal-cloud (MultiDrive) -->
-          <article class="glass-card project-card" data-category="react" data-project-id="personal-cloud">
-            <div class="project-card__media">
-              <img src="assets/multidrive.png" alt="Multi Drive application mockup" />
-              <div class="project-card__overlay">
-                <span class="btn btn--primary">View Architecture & Details</span>
-              </div>
+          <a class="case-card reveal" href="personal-cloud.html" aria-label="Read the Personal Cloud case study">
+            <div class="case-thumb">
+              <img decoding="async" loading="lazy" src="assets/Personal Cloud/1781503589450.jpg" alt="Personal Cloud: a Dockerized, self-hosted storage platform">
             </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">
-                Multi Drive
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </h3>
-              <p class="project-card__desc">A unified personal cloud interface that aggregates multiple storage accounts, supporting root search and encrypted credential sync.</p>
-              <ul class="project-card__tags">
-                <li class="tag">JavaScript</li>
-                <li class="tag">Express</li>
-                <li class="tag">Firebase</li>
-                <li class="tag">React / Vite</li>
-              </ul>
-              <div class="project-card__links">
-                <button class="btn btn--secondary btn-modal-trigger" data-project-id="personal-cloud">Details</button>
-                <a class="btn btn--secondary" href="https://multi-drives.vercel.app/" target="_blank" rel="noopener">Demo</a>
-                <a class="btn btn--primary" href="https://github.com/Rizirfan/personal-cloud" target="_blank" rel="noopener">Code</a>
+            <div class="case-text">
+              <span class="case-index">Cloud platform</span>
+              <h3>Personal Cloud: your storage, self-managed</h3>
+              <p>A self-hosted, Dockerized storage platform where application and storage services run as isolated containers on infrastructure you control.</p>
+              <div class="tag-row">
+                <span class="tag">Docker</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">PostgreSQL</span>
               </div>
+              <span class="case-more" aria-hidden="true">Read the case study<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
             </div>
-          </article>
+          </a>
 
-          <!-- Printhub -->
-          <article class="glass-card project-card" data-category="typescript" data-project-id="printhub">
-            <div class="project-card__media">
-              <img src="assets/mohd.png" alt="PrintHub mockup" />
-              <div class="project-card__overlay">
-                <span class="btn btn--primary">View Architecture & Details</span>
+          <div class="case-card reveal">
+            <a class="case-thumb" href="https://printhub-eta-two.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="View the PrintHub live demo">
+              <img decoding="async" loading="lazy" src="assets/printhub/Screenshot 2026-09-05 184411.png" alt="PrintHub: a print queue management dashboard">
+            </a>
+            <div class="case-text">
+              <span class="case-index">Operations</span>
+              <a class="case-title-link" href="https://printhub-eta-two.vercel.app/" target="_blank" rel="noopener noreferrer"><h3>PrintHub: a print queue your team can trust</h3></a>
+              <p>A print queue management dashboard built around REST APIs, so printing workflows stay organized and reliable.</p>
+              <div class="tag-row">
+                <span class="tag">TypeScript</span>
+                <span class="tag">React</span>
+                <span class="tag">REST API</span>
+              </div>
+              <div class="case-links">
+                <a href="https://printhub-eta-two.vercel.app/" target="_blank" rel="noopener noreferrer">Live demo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></a>
+                <span class="sep" aria-hidden="true">·</span>
+                <a href="https://github.com/Rizirfan/printhub" target="_blank" rel="noopener noreferrer">GitHub</a>
               </div>
             </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">
-                PrintHub
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </h3>
-              <p class="project-card__desc">A secure, streamlined print queue management dashboard that simplifies cloud-coordinated document output.</p>
-              <ul class="project-card__tags">
-                <li class="tag">TypeScript</li>
-                <li class="tag">React</li>
-                <li class="tag">REST API</li>
-              </ul>
-              <div class="project-card__links">
-                <button class="btn btn--secondary btn-modal-trigger" data-project-id="printhub">Details</button>
-                <a class="btn btn--primary" href="https://github.com/Rizirfan/printhub" target="_blank" rel="noopener">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- via-sharing -->
-          <article class="glass-card project-card" data-category="typescript" data-project-id="via-sharing">
-            <div class="project-card__media">
-              <img src="assets/filenest.png" alt="Via-sharing mockup" />
-              <div class="project-card__overlay">
-                <span class="btn btn--primary">View Architecture & Details</span>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">
-                Via Sharing
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </h3>
-              <p class="project-card__desc">High-speed link sharing service featuring dynamic URL generation, temporary caches, and lightweight front-end download panels.</p>
-              <ul class="project-card__tags">
-                <li class="tag">TypeScript</li>
-                <li class="tag">Tailwind</li>
-                <li class="tag">Caching</li>
-              </ul>
-              <div class="project-card__links">
-                <button class="btn btn--secondary btn-modal-trigger" data-project-id="via-sharing">Details</button>
-                <a class="btn btn--primary" href="https://github.com/Rizirfan/via-sharing" target="_blank" rel="noopener">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Ihram-Essentials -->
-          <article class="glass-card project-card" data-category="htmlcss" data-project-id="ihram-essentials">
-            <div class="project-card__media">
-              <img src="assets/filenest.png" alt="Ihram Essentials mockup" />
-              <div class="project-card__overlay">
-                <span class="btn btn--primary">View Architecture & Details</span>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">
-                Ihram Essentials
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </h3>
-              <p class="project-card__desc">A responsive web experience tailored to assist pilgrim logistics, featuring guide checklists and travel supply directories.</p>
-              <ul class="project-card__tags">
-                <li class="tag">HTML5</li>
-                <li class="tag">CSS3</li>
-                <li class="tag">UX / UI</li>
-              </ul>
-              <div class="project-card__links">
-                <button class="btn btn--secondary btn-modal-trigger" data-project-id="ihram-essentials">Details</button>
-                <a class="btn btn--secondary" href="https://rizirfan.github.io/Ihram-Essentials/" target="_blank" rel="noopener">Demo</a>
-                <a class="btn btn--primary" href="https://github.com/Rizirfan/Ihram-Essentials" target="_blank" rel="noopener">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Crypto-price-Checker- -->
-          <article class="glass-card project-card" data-category="htmlcss" data-project-id="crypto-price-checker">
-            <div class="project-card__media">
-              <img src="assets/filenest.png" alt="Crypto Price Checker mockup" />
-              <div class="project-card__overlay">
-                <span class="btn btn--primary">View Architecture & Details</span>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">
-                Crypto Checker
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </h3>
-              <p class="project-card__desc">A clean, real-time client-side cryptocurrency price comparison utility featuring simple sparkline metrics.</p>
-              <ul class="project-card__tags">
-                <li class="tag">HTML5</li>
-                <li class="tag">CSS Grid</li>
-                <li class="tag">Vanilla JS</li>
-              </ul>
-              <div class="project-card__links">
-                <button class="btn btn--secondary btn-modal-trigger" data-project-id="crypto-price-checker">Details</button>
-                <a class="btn btn--secondary" href="https://rizirfan.github.io/Crypto-price-Checker-/" target="_blank" rel="noopener">Demo</a>
-                <a class="btn btn--primary" href="https://github.com/Rizirfan/Crypto-price-Checker-" target="_blank" rel="noopener">Code</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="callout-box" id="customizeCallout">
-          <div class="callout-content">
-            <h3 class="callout-title">Looking for a specific configuration?</h3>
-            <p class="callout-desc">
-              All projects are fully open source on GitHub. Explore my repositories directly or connect with me if you need help deploying them.
-            </p>
           </div>
-          <a class="btn btn--primary" href="https://github.com/Rizirfan" target="_blank" rel="noopener">Visit My GitHub</a>
+
+          <a class="case-card reveal" href="https://github.com/Rizirfan/via-sharing" target="_blank" rel="noopener noreferrer" aria-label="View Via Sharing on GitHub">
+            <div class="case-thumb">
+              <img decoding="async" loading="lazy" src="assets/filenest.png" alt="Via Sharing: high-speed link sharing service">
+            </div>
+            <div class="case-text">
+              <span class="case-index">Web tool</span>
+              <h3>Via Sharing: link sharing that stays out of the way</h3>
+              <p>High-speed link sharing with smart caching, so transfers start fast and stay out of your way.</p>
+              <div class="tag-row">
+                <span class="tag">TypeScript</span>
+                <span class="tag">Tailwind</span>
+                <span class="tag">Caching</span>
+              </div>
+              <span class="case-more" aria-hidden="true">View on GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+            </div>
+          </a>
+
+          <div class="case-card reveal">
+            <a class="case-thumb" href="https://rizirfan.github.io/Ihram-Essentials/shop.html" target="_blank" rel="noopener noreferrer" aria-label="View the Ihram Essentials live demo">
+              <img decoding="async" loading="lazy" src="assets/Ihram Essentials/Screenshot 2026-09-05 185647.png" alt="Ihram Essentials: pilgrim preparation checklists">
+            </a>
+            <div class="case-text">
+              <span class="case-index">Web experience</span>
+              <a class="case-title-link" href="https://rizirfan.github.io/Ihram-Essentials/shop.html" target="_blank" rel="noopener noreferrer"><h3>Ihram Essentials: preparation for a meaningful journey</h3></a>
+              <p>A checkout-ready shopping experience built with clean, accessible HTML and CSS for a meaningful journey.</p>
+              <div class="tag-row">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">UX / UI</span>
+              </div>
+              <div class="case-links">
+                <a href="https://rizirfan.github.io/Ihram-Essentials/shop.html" target="_blank" rel="noopener noreferrer">Live demo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></a>
+                <span class="sep" aria-hidden="true">·</span>
+                <a href="https://github.com/Rizirfan/Ihram-Essentials" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <a class="case-thumb" href="https://rizirfan.github.io/Crypto-price-Checker-/" target="_blank" rel="noopener noreferrer" aria-label="View the Crypto Checker live demo">
+              <img decoding="async" loading="lazy" src="assets/crypto/Screenshot 2026-09-05 185253.png" alt="Crypto Checker: real-time price comparison">
+            </a>
+            <div class="case-text">
+              <span class="case-index">Data tool</span>
+              <a class="case-title-link" href="https://rizirfan.github.io/Crypto-price-Checker-/" target="_blank" rel="noopener noreferrer"><h3>Crypto Checker: markets at a glance</h3></a>
+              <p>Real-time crypto prices compared at a glance, laid out with CSS Grid and plain JavaScript.</p>
+              <div class="tag-row">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS Grid</span>
+                <span class="tag">Vanilla JS</span>
+              </div>
+              <div class="case-links">
+                <a href="https://rizirfan.github.io/Crypto-price-Checker-/" target="_blank" rel="noopener noreferrer">Live demo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></a>
+                <span class="sep" aria-hidden="true">·</span>
+                <a href="https://github.com/Rizirfan/Crypto-price-Checker-" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT SECTION -->
-    <section class="section" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid var(--stroke); border-bottom: 1px solid var(--stroke);" id="about">
-      <div class="container about-layout">
-        <div class="about-media">
-          <div class="glass-card about-photo-card">
-            <img src="assets/avatar.png" alt="Mohamed Irfan" class="about-photo" />
-          </div>
-          <div class="about-highlights" role="list" style="margin-top: 24px;">
-            <div class="glass-card highlight-card" role="listitem">
-              <span class="highlight-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-              </span>
-              <span class="highlight-title">Focus</span>
-              <span class="highlight-val">Frontend & Cloud</span>
-            </div>
-            <div class="glass-card highlight-card" role="listitem">
-              <span class="highlight-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 2 2.5 3.5 3.5 5.5s1.5 4 1.5 6a7 7 0 1 1-14 0c0-2 1-4 2-6s2.5-3.5 3.5-5.5z"></path></svg>
-              </span>
-              <span class="highlight-title">Priority</span>
-              <span class="highlight-val">Performance</span>
-            </div>
-            <div class="glass-card highlight-card" role="listitem">
-              <span class="highlight-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
-              </span>
-              <span class="highlight-title">Design</span>
-              <span class="highlight-val">Pixel-Perfect</span>
-            </div>
-          </div>
-        </div>
+    <!-- ============================== SERVICES ============================== -->
+    <section id="services" class="services">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>How I can help</h2>
+          <p>Most engagements start with one of these situations, not with a request for technology. Each one has a defined shape.</p>
+        </header>
+        <div class="engagement-grid stagger">
+          <a class="engagement-card reveal" href="#contact">
+            <div class="engagement-figure"><svg viewBox="0 0 360 240" fill="none" aria-hidden="true"><rect x="60" y="74" width="136" height="92" rx="10" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></rect><path d="M202 100v40" stroke="#252525" stroke-width="5" stroke-linecap="round"></path><rect x="202" y="138" width="86" height="26" rx="6" fill="#657D60"></rect><path d="M128 96h52M128 108h40M128 120h52" stroke="#C0714E" stroke-width="5" stroke-linecap="round"></path><path d="M96 226c0-16 14-30 30-30h122c14 0 26 12 26 26v4H96z" fill="#F1EFEA" stroke="#252525" stroke-width="2.5"></path></svg></div>
+            <h3>Full-Stack Cloud Apps</h3>
+            <ul class="engagement-points">
+              <li>FastAPI backends with clean data models</li>
+              <li>React / TypeScript clients that match</li>
+              <li>Async workers for the slow work</li>
+              <li>Deployed with Docker Compose</li>
+            </ul>
+            <span class="engagement-go" aria-hidden="true">Talk it through<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+          </a>
 
-        <div class="glass-card skills-card">
-          <span class="eyebrow">Biography</span>
-          <h2 class="skills-title" style="font-size: 28px; margin-bottom: 16px; border-bottom: none;">Design-Minded Engineer</h2>
-          <p class="about-text" style="margin-bottom: 32px; font-size: 15px;">
-            I am a Computer Science student passionate about cloud and software development. I combine clean UI layouts, accessible interactive patterns, and performant backends.
-            <br/><br/>
-            Whether building unified multi-cloud dashboards or orchestrating FastAPI containers, I prioritize clean source code structures, responsive layouts, and user-centric flows.
-          </p>
+          <a class="engagement-card reveal" href="#contact">
+            <div class="engagement-figure"><svg viewBox="0 0 360 240" fill="none" aria-hidden="true"><rect x="118" y="40" width="124" height="86" rx="8" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></rect><circle cx="142" cy="60" r="5" fill="#C0714E"></circle><circle cx="160" cy="60" r="5" fill="#EADFC9"></circle><circle cx="178" cy="60" r="5" fill="#EADFC9"></circle><path d="M132 84h96M132 98h96M132 112h64" stroke="#657D60" stroke-width="6" stroke-linecap="round"></path><path d="M250 130c4-46 34-72 66-74l10 10-8 8-12-8c-22 4-40 26-44 64h56l-66 76-64-76z" fill="#C0714E" stroke="#252525" stroke-width="2.5" stroke-linejoin="round"></path></svg></div>
+            <h3>Frontend Craft</h3>
+            <ul class="engagement-points">
+              <li>Accessible, responsive interfaces</li>
+              <li>Component systems your team extends</li>
+              <li>Design tokens and consistent type</li>
+              <li>Performance that holds up</li>
+            </ul>
+            <span class="engagement-go" aria-hidden="true">Talk it through<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+          </a>
 
-          <div class="deliverables-divider"></div>
+          <a class="engagement-card reveal" href="#contact">
+            <div class="engagement-figure"><svg viewBox="0 0 360 240" fill="none" aria-hidden="true"><rect x="120" y="44" width="120" height="34" rx="8" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></rect><rect x="120" y="92" width="120" height="34" rx="8" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></rect><rect x="120" y="140" width="120" height="34" rx="8" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></rect><path d="M180 40v136" stroke="#252525" stroke-width="2" stroke-dasharray="4 6"></path><path d="M166 26h28M180 18v14" stroke="#56718C" stroke-width="2.5" stroke-linecap="round"></path><path d="M120 28v210c14 0 26-8 30-20h60c4 12 16 20 30 20V28c-14 0-26 8-30 20h-60c-4-12-16-20-30-20z" fill="#F1EFEA" stroke="#252525" stroke-width="2.5"></path><circle cx="228" cy="62" r="7" fill="#657D60"></circle></svg></div>
+            <h3>Deployment &amp; Operations</h3>
+            <ul class="engagement-points">
+              <li>Dockerized apps that run anywhere</li>
+              <li>CI/CD pipelines that automate the boring</li>
+              <li>Nginx, proxies, and clean secrets</li>
+              <li>Reproducible local and prod setups</li>
+            </ul>
+            <span class="engagement-go" aria-hidden="true">Talk it through<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+          </a>
 
-          <h3 class="skills-title">Core Competencies</h3>
-          <div class="skills-grid" aria-label="Skills & Technologies">
-            <span class="skill-badge">Python</span>
-            <span class="skill-badge">FastAPI</span>
-            <span class="skill-badge">TypeScript</span>
-            <span class="skill-badge">JavaScript</span>
-            <span class="skill-badge">React</span>
-            <span class="skill-badge">Node.js</span>
-            <span class="skill-badge">Firebase</span>
-            <span class="skill-badge">Docker</span>
-            <span class="skill-badge">Redis</span>
-            <span class="skill-badge">Tailwind CSS</span>
-            <span class="skill-badge">Git & CI/CD</span>
-            <span class="skill-badge">HTML5 / CSS3</span>
-          </div>
-
-          <div class="deliverables-divider"></div>
-
-          <h3 class="skills-title" style="font-size: 18px; margin-bottom: 16px;">What I Deliver</h3>
-          <ul class="deliverables-list">
-            <li><strong>Responsive layouts</strong> optimized for all modern device screen sizes.</li>
-            <li><strong>Robust API architectures</strong> utilizing Python/Node with caching layers.</li>
-            <li><strong>Modular frontend components</strong> designed for scalability and accessibility.</li>
-            <li><strong>Containerized setups</strong> using Docker Compose for simple local/production deployments.</li>
-          </ul>
+          <a class="engagement-card reveal" href="#contact">
+            <div class="engagement-figure"><svg viewBox="0 0 360 240" fill="none" aria-hidden="true"><circle cx="180" cy="120" r="64" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></circle><circle cx="92" cy="96" r="26" fill="#657D60" stroke="#252525" stroke-width="2.5"></circle><circle cx="268" cy="96" r="26" fill="#56718C" stroke="#252525" stroke-width="2.5"></circle><circle cx="268" cy="156" r="26" fill="#C0714E" stroke="#252525" stroke-width="2.5"></circle><path d="M113 88h42M207 88h42M207 122l42 12M113 122l42 12M180 176v-12" stroke="#252525" stroke-width="2.5"></path></svg></div>
+            <h3>Platform Integrations</h3>
+            <ul class="engagement-points">
+              <li>Drive / cloud storage API connections</li>
+              <li>Firebase auth with secure sessions</li>
+              <li>Redis caching and token management</li>
+              <li>Rate limits, retries, and honest errors</li>
+            </ul>
+            <span class="engagement-go" aria-hidden="true">Talk it through<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section class="section" id="contact">
-      <div class="container contact-layout">
-        <div class="glass-card contact-card">
-          <span class="eyebrow">Get in touch</span>
-          <h2 class="contact-title">Let’s build something together</h2>
-          <p class="contact-text">
-            Have a project in mind, want to collaborate on open-source, or just want to chat about cloud setups? Send me a message or connect directly via GitHub.
-          </p>
+    <!-- ============================== APPROACH (sticky scroll story) ============================== -->
+    <section id="approach" class="story" aria-label="My approach to building software" data-active="intro">
+      <div class="container">
+        <header class="story-head">
+          <h2 class="story-lead">From blank directory to deployed service</h2>
+        </header>
 
-          <div class="contact-actions">
-            <a class="btn btn--primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=mohdirfanr0329@gmail.com" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              Email Me
-            </a>
-            <a class="btn btn--secondary" href="https://github.com/Rizirfan" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              Follow on GitHub
-            </a>
-            <a class="btn btn--secondary" href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              Connect on LinkedIn
-            </a>
+        <div class="story-track">
+          <!-- Left: scrolling text steps -->
+          <div class="story-steps">
+            <div class="story-text-stage">
+              <article class="story-step is-active" data-step="0">
+                <span class="story-num">01</span>
+                <h3>Every project starts as a blank directory.</h3>
+                <p><span class="story-lead-in"><span class="ktw"><span class="kti">The</span></span> <span class="ktw"><span class="kti">plan</span></span> <span class="ktw"><span class="kti">comes</span></span> <span class="ktw"><span class="kti">first.</span></span></span> The stack, the data model, the shape of the API. Getting this part wrong costs ten times more later, so I spend it properly.</p>
+                <div class="story-step-frame" aria-hidden="true"><svg viewBox="0 0 360 200" fill="none"><rect x="96" y="30" width="168" height="140" rx="12" stroke="#252525" stroke-width="2" stroke-dasharray="6 6"></rect><path d="M128 64h104M128 82h80M128 100h104M128 118h72" stroke="#657D60" stroke-width="5" stroke-linecap="round"></path><path d="M180 30v-12M168 18h24" stroke="#252525" stroke-width="2.5" stroke-linecap="round"></path></svg></div>
+              </article>
+              <article class="story-step" data-step="1">
+                <span class="story-num">02</span>
+                <h3>Then the build: small pieces that work fast.</h3>
+                <p><span class="story-lead-in"><span class="ktw"><span class="kti">Working</span></span> <span class="ktw"><span class="kti">software</span></span> <span class="ktw"><span class="kti">beats</span></span> <span class="ktw"><span class="kti">perfect</span></span> <span class="ktw"><span class="kti">plans.</span></span></span> API contracts, components, containers. Each layer stays small enough to test and honest enough to keep.</p>
+                <div class="story-step-frame" aria-hidden="true"><svg viewBox="0 0 360 200" fill="none"><rect x="96" y="30" width="168" height="26" rx="7" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></rect><rect x="96" y="70" width="168" height="26" rx="7" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></rect><rect x="96" y="110" width="168" height="26" rx="7" fill="#FFFBFF" stroke="#252525" stroke-width="2.5"></rect><path d="M180 30v100" stroke="#252525" stroke-width="2" stroke-dasharray="4 6"></path><circle cx="140" cy="43" r="5" fill="#C0714E"></circle><circle cx="220" cy="83" r="5" fill="#657D60"></circle><circle cx="180" cy="123" r="5" fill="#56718C"></circle></svg></div>
+              </article>
+              <article class="story-step" data-step="2">
+                <span class="story-num">03</span>
+                <h3>Shipping is where the craft shows.</h3>
+                <p><span class="story-lead-in"><span class="ktw"><span class="kti">Built</span></span> <span class="ktw"><span class="kti">is</span></span> <span class="ktw"><span class="kti">just</span></span> <span class="ktw"><span class="kti">the</span></span> <span class="ktw"><span class="kti">start.</span></span></span> Deployed, running, watched, and pruned. What earns its place stays; the rest gets cut without ceremony.</p>
+                <div class="story-step-frame" aria-hidden="true"><svg viewBox="0 0 360 200" fill="none"><path d="M180 170c-30-46-74-58-92-60 2-34 30-58 62-58 24 0 46 12 58 32 12-6 26-8 40-4 18 4 32 20 34 38-28 2-60 18-102 52z" fill="#C0714E" stroke="#252525" stroke-width="2.5"></path><circle cx="252" cy="52" r="22" fill="#657D60" stroke="#252525" stroke-width="2.5"></circle><path d="M243 52l7 7 12-14" stroke="#FFFBFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Right: pinned stage carrying the scroll-driven scene: the plan
+               (a blueprint), the build (a container stack), and the ship (a
+               cloud with a check). Scroll progress crossfades between the
+               three frames. Decorative: aria-hidden. -->
+          <div class="story-sticky">
+            <ol class="story-progress" aria-label="Jump to a step">
+              <li data-dot="0" class="is-active"><button type="button" class="story-progress-num" aria-label="Go to step 1" aria-current="true" >01</button><span class="story-progress-track" aria-hidden="true"></span></li>
+              <li data-dot="1"><button type="button" class="story-progress-num" aria-label="Go to step 2">02</button><span class="story-progress-track" aria-hidden="true"></span></li>
+              <li data-dot="2"><button type="button" class="story-progress-num" aria-label="Go to step 3">03</button><span class="story-progress-track" aria-hidden="true"></span></li>
+            </ol>
+
+            <div class="story-stage" aria-hidden="true">
+              <svg id="storyScene" class="story-scene" viewBox="0 0 720 720" focusable="false" aria-hidden="true">
+                <ellipse id="scPlate" cx="360" cy="600" rx="230" ry="26" fill="#252525" opacity="0" style="opacity:0"></ellipse>
+
+                <g class="sc-frame" id="scFPlan" data-t0="0.00" data-t1="0.30" style="opacity:0;visibility:hidden;transform:translateY(14px)">
+                  <rect x="212" y="150" width="296" height="388" rx="18" fill="#FFFBFF" opacity="0.9" stroke="#252525" stroke-width="3" stroke-dasharray="10 8"></rect>
+                  <path d="M252 216h216M252 244h160" stroke="#657D60" stroke-width="6" stroke-linecap="round"></path>
+                  <path d="M252 274h216M252 302h180M252 330h216" stroke="#D9D4CB" stroke-width="6" stroke-linecap="round"></path>
+                  <path d="M252 386h216M252 414h160M252 442h216" stroke="#56718C" stroke-width="6" stroke-linecap="round"></path>
+                  <path d="M252 492h120" stroke="#C0714E" stroke-width="6" stroke-linecap="round"></path>
+                </g>
+
+                <g class="sc-frame" id="scFBuild" data-t0="0.34" data-t1="0.64" style="opacity:0;visibility:hidden;transform:translateY(14px)">
+                  <rect x="270" y="300" width="180" height="54" rx="10" fill="#FFFBFF" stroke="#252525" stroke-width="3"></rect>
+                  <rect x="270" y="374" width="180" height="54" rx="10" fill="#FFFBFF" stroke="#252525" stroke-width="3"></rect>
+                  <rect x="270" y="448" width="180" height="54" rx="10" fill="#FFFBFF" stroke="#252525" stroke-width="3"></rect>
+                  <path d="M360 300v202" stroke="#252525" stroke-width="2.5" stroke-dasharray="6 8"></path>
+                  <circle cx="306" cy="327" r="9" fill="#C0714E"></circle>
+                  <circle cx="414" cy="401" r="9" fill="#657D60"></circle>
+                  <circle cx="360" cy="475" r="9" fill="#56718C"></circle>
+                  <path d="M360 262v-34" stroke="#252525" stroke-width="3" stroke-linecap="round"></path>
+                  <circle cx="360" cy="254" r="6" fill="#252525"></circle>
+                </g>
+
+                <g class="sc-frame" id="scFShip" data-t0="0.68" data-t1="1.00" style="opacity:0;visibility:hidden;transform:translateY(14px)">
+                  <path d="M360 500v-120" stroke="#252525" stroke-width="3" stroke-linecap="round"></path>
+                  <path d="M360 392l-26 -26M360 392l26 -26" stroke="#252525" stroke-width="3" stroke-linecap="round"></path>
+                  <path d="M214 320c-10-66 40-104 96-104 30 0 56 14 70 38 18-8 38-10 56-4 26 6 44 28 46 52-40 4-84 30-124 72-36-44-88-66-144-54z" fill="#C0714E" stroke="#252525" stroke-width="3"></path>
+                  <circle cx="474" cy="158" r="34" fill="#657D60" stroke="#252525" stroke-width="3"></circle>
+                  <path d="M460 158l10 10 18-22" stroke="#FFFBFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <form class="glass-card contact-form" id="contactForm" action="#" method="POST">
-          <div class="form-group">
-            <label class="form-label" for="userName">Name</label>
-            <input class="form-input" type="text" id="userName" name="name" required placeholder="John Doe" />
+    <!-- ============================== ABOUT ============================== -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="reveal">About</h2>
+        <p class="about-lede reveal">Software that ships is my favorite kind of problem. It took a lot of shipped projects to be able to say that.</p>
+
+        <div class="about-beats">
+          <div class="about-beat-row reveal">
+            <a class="about-media" href="assets/teledrive.png" data-zoom="" data-zoom-caption="TeleDrive" data-zoom-alt="TeleDrive application screenshot" aria-label="Open the full TeleDrive screenshot">
+              <img src="assets/teledrive.png" width="600" height="450" alt="" loading="lazy" decoding="async">
+              <span class="about-media-zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+              </span>
+            </a>
+            <div class="about-beat-text">
+              <p><strong class="about-beat">Cloud · FastAPI &amp; Docker</strong>I build cloud storage and API products with real architecture. TeleDrive abstracts Telegram channels into a storage backend behind API workers, with async uploads, Redis queues and PostgreSQL metadata. The pieces stay small; the system stays honest.</p>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="userEmail">Email</label>
-            <input class="form-input" type="email" id="userEmail" name="email" required placeholder="john@example.com" />
+
+          <div class="about-beat-row reveal">
+            <a class="about-media" href="assets/multidrive.png" data-zoom="" data-zoom-caption="Multi Drive" data-zoom-alt="Multi Drive application screenshot" aria-label="Open the full Multi Drive screenshot">
+              <img src="assets/multidrive.png" width="600" height="450" alt="" loading="lazy" decoding="async">
+              <span class="about-media-zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+              </span>
+            </a>
+            <div class="about-beat-text">
+              <p><strong class="about-beat">Frontend · React &amp; TypeScript</strong>Unified dashboards that aggregate real accounts. Multi Drive connects multiple Google profiles into one interface, with breadcrumb folder traversal, root search, and encrypted credential sync. Clean components, strict state, accessible navigation.</p>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="userMsg">Message</label>
-            <textarea class="form-input form-inputtextarea" id="userMsg" name="message" required placeholder="Hi, let's talk about building..."></textarea>
+
+          <div class="about-beat-row reveal">
+            <a class="about-media" href="assets/mohd.png" data-zoom="" data-zoom-caption="PrintHub" data-zoom-alt="PrintHub dashboard screenshot" aria-label="Open the full PrintHub screenshot">
+              <img src="assets/mohd.png" width="600" height="450" alt="" loading="lazy" decoding="async">
+              <span class="about-media-zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+              </span>
+            </a>
+            <div class="about-beat-text">
+              <p><strong class="about-beat">Design · UI/UX &amp; Access</strong>I pair responsive, accessible interfaces with the systems behind them. PrintHub is a type-safe React dashboard for print queue management; the same care goes into a pilgrim checklist or a crypto utility. Type, spacing and state, considered the same way.</p>
+            </div>
           </div>
-          <button class="btn btn--primary" style="padding: 14px; width: 100%;" type="submit">Send Message</button>
-        </form>
+
+          <p class="about-close reveal">What I look for is whether the work keeps working long after the last commit. That is the test.</p>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  <!-- ============================== CONTACT ==============================
+       Plain on purpose: an email address, a GitHub, a LinkedIn. No intake
+       form, no scheduling widget. -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <header class="section-head reveal">
+        <h2>Start a conversation</h2>
+        <p>I would like to hear what you are working on. The first conversation is diagnosis, not a pitch: what is happening that makes this important now? I take on full-stack builds, frontend work, and deployment cleanups, and I am open to collaboration and internships.</p>
+      </header>
+      <div class="cta-row reveal">
+        <a href="mailto:mohdirfanr0329@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Open my GitHub</a>
+        <a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Connect on LinkedIn</a>
+      </div>
+      <p class="contact-plain reveal">Or write to <a href="mailto:mohdirfanr0329@gmail.com">mohdirfanr0329@gmail.com</a> directly.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer" data-cursor="light">
     <div class="container footer-inner">
-      <a class="footer-logo" href="#hero">Mohamed Irfan</a>
-      <span class="footer-copy">© 2026 Mohamed Irfan. All rights reserved.</span>
-      <a class="scroll-top" href="#hero" aria-label="Scroll to top">↑</a>
+      <p class="footer-name">Mohamed Irfan · Cloud &amp; Software Developer · Design, Build, Ship �</p>
+      <ul class="footer-links">
+        <li><a href="mailto:mohdirfanr0329@gmail.com">Email</a></li>
+        <li><a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+      <p class="footer-note">Designed and built the same way I would build yours.</p>
     </div>
   </footer>
 
-  <!-- DYNAMIC PROJECT DETAILS MODAL -->
-  <div class="modal-backdrop" id="projectModal" aria-hidden="true" role="dialog">
-    <div class="modal-content">
-      <button class="modal-close" id="modalCloseBtn" aria-label="Close details overlay">✕</button>
-      <div class="modal-media">
-        <img id="modalImg" src="" alt="Project mockup" />
-      </div>
-      <div class="modal-body">
-        <div class="modal-header">
-          <h2 class="modal-title" id="modalTitle">Project Title</h2>
-          <ul class="modal-tags" id="modalTags">
-            <!-- Dynamic tags -->
-          </ul>
-        </div>
-        <p class="modal-desc" id="modalDesc">Project description goes here.</p>
-        
-        <div class="modal-info-grid">
-          <div>
-            <h3 class="info-section-title">Key Features</h3>
-            <ul class="info-list" id="modalFeatures">
-              <!-- Dynamic features -->
-            </ul>
-          </div>
-          <div>
-            <h3 class="info-section-title">Architecture Details</h3>
-            <ul class="info-list" id="modalArch">
-              <!-- Dynamic architecture details -->
-            </ul>
-          </div>
-        </div>
+  <script src="script.js" defer></script>
 
-        <div class="modal-footer">
-          <a class="btn btn--primary" id="modalGithubBtn" href="" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            View Source Code
-          </a>
-          <a class="btn btn--primary" id="modalDemoBtn" href="" target="_blank" rel="noopener" style="background: linear-gradient(135deg, var(--secondary), #22d3ee); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-            Live Demo
-          </a>
-          <button class="btn btn--secondary" id="modalCloseActionBtn">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT -->
-  <script src="script.js"></script>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
 </body>
 </html>

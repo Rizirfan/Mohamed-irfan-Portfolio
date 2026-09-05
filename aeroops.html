@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#FAF9F6" />
+  <title>AeroLogistics (AEROOPS) | Mohamed Irfan</title>
+  <meta name="description" content="AeroLogistics (AEROOPS) Phase 1: a UAV-based aerial cargo logistics platform. Workflow, architecture, modules, and roadmap." />
+
+  <link rel="icon" href="assets/avatar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400&family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-cursor="dark">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============================== NAVIGATION ============================== -->
+  <nav class="site-nav" id="siteNav">
+    <div class="container nav-inner">
+      <button class="logo-btn" aria-label="Mohamed Irfan home" onclick="window.location.href='index.html'">
+        <span class="logo-mark" aria-hidden="true">Mohamed Irfan</span>
+      </button>
+      <ul class="nav-links" aria-label="Site sections">
+        <li><a href="index.html#work" class="is-current">Work</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#approach">Approach</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="mailto:mohdirfanr0329@gmail.com" class="icon-link" aria-label="Email Mohamed Irfan">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <span class="icon-link-label">Email</span>
+        </a>
+        <a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Visit Mohamed Irfan's GitHub profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <span class="icon-link-label">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Visit Mohamed Irfan's LinkedIn profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2c.5-1 1.8-2.2 4-2.2 4.3 0 5.2 2.8 5.2 6.5V24h-4v-8.5c0-2-.3-4.5-2.7-4.5-2.7 0-3.1 2.1-3.1 4.3V24h-4V8z"/></svg>
+          <span class="icon-link-label">LinkedIn</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- ============================== PAGE HEADER ============================== -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="hero-eyebrow reveal">Project · Aerial Logistics</p>
+        <h1 class="page-title reveal">AeroLogistics (AEROOPS)</h1>
+        <p class="page-intro reveal">A UAV-based aerial cargo logistics platform that brings logistics operations and drone technology together in one structured software system, from cargo request to mission completion.</p>
+        <div class="tag-row reveal">
+          <span class="tag">UAV / Drone Technology</span>
+          <span class="tag">Logistics Management</span>
+          <span class="tag">Backend Systems</span>
+          <span class="tag">Mission Management</span>
+          <span class="tag">System Architecture</span>
+        </div>
+        <div class="badge-row reveal">
+          <span class="badge badge-accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Private project</span>
+          <span class="badge">Discovery &amp; design stage</span>
+          <span class="badge">Phase 1 scope</span>
+        </div>
+        <div class="cta-row reveal">
+          <a href="mailto:mohdirfanr0329@gmail.com" class="btn btn-primary">Talk about this project</a>
+          <a href="index.html#work" class="btn btn-ghost">Back to all work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== PROJECT BODY ============================== -->
+    <section class="case-body">
+      <div class="container">
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Overview</h2>
+          </header>
+          <p class="long-lede reveal">AeroLogistics (AEROOPS) is a UAV-based aerial cargo logistics platform designed to support the management and coordination of cargo transportation using unmanned aerial vehicles.</p>
+          <div class="prose">
+            <p class="reveal">The platform brings logistics operations and UAV technology together in a structured software system. It is intended to provide an operational workflow for managing cargo missions from the initial request through dispatch, flight operations, tracking, and delivery.</p>
+          </div>
+          <div class="notice reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <p><b>Private project.</b> AEROOPS is under confidentiality, so only a high-level glimpse is shared here. The source code, infrastructure details, and operational data stay private. If you want to see more, <a href="mailto:mohdirfanr0329@gmail.com">send me a message</a>.</p>
+          </div>
+        </div>
+
+        
+          <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Problem statement</h2>
+          </header>
+          <div class="callout reveal">
+            <h3>The gap</h3>
+            <p>Traditional logistics systems are designed primarily around ground transportation. UAV-based logistics introduces additional requirements such as UAV availability, flight planning, mission assignment, cargo capacity, operational tracking, delivery coordination, flight status, and mission completion. AEROOPS addresses these with a software platform built specifically around aerial cargo operations.</p>
+          </div>
+        </div>
+
+        <div class="project-block aero-bg">
+          <header class="block-head reveal">
+            <h2>The project in detail</h2>
+          </header>
+          <div class="prose">
+            <p class="reveal">AEROOPS is a software platform purpose-built for aerial cargo operations. It turns the idea of drone delivery into a structured, manageable workflow: a system where cargo requests become missions, missions get matched to available UAVs, and every flight is tracked from dispatch to delivery. Rather than bolting drone features onto a ground-logistics tool, the platform treats aerial transport as its own discipline, with its own data, its own states, and its own operational rhythm.</p>
+            <p class="reveal">Traditional logistics systems were designed around trucks, vans, and routes on roads. Drones change the constraints: a UAV has a payload ceiling, a battery budget, a flight window, and a home base, while cargo has weight, a pickup point, and a destination. None of that fits comfortably inside a ground-first system. AEROOPS closes that gap by modelling the entities that actually matter in aerial logistics, cargo, missions, UAVs, locations, and the events that connect them, and letting the platform coordinate the rest.</p>
+            <p class="reveal">Every cargo request moves through the same operational pipeline. The request is converted into a mission, cargo details are captured, a suitable UAV is assigned, and the mission is planned, dispatched, and flown while operators watch its progress in near real time. Delivery marks the transition from flight to fulfilment: arrival is recorded, cargo is confirmed, and the mission moves to completion. The modules responsible for cargo, missions, and UAVs stay independent, sitting above an operations layer that coordinates dispatch, tracking, and delivery.</p>
+            <p class="reveal">The result is operational clarity. Instead of spreadsheets and phone calls, operators get a single view of active missions, available UAVs, flight statuses, and pending deliveries. Manual coordination drops, UAV utilization improves, and every decision, which drone flies which load, is made from structured information rather than guesswork. The design deliberately keeps the system simple at its core, so a small logistics team can run it without a dedicated engineering team behind it.</p>
+            <p class="reveal">Phase 1 establishes the core logistics platform. From there the roadmap moves toward real-time UAV integration, automated mission planning, and AI-assisted route optimization, with autonomous aerial logistics as the long-term goal. Because AEROOPS is a private project, only this high-level glimpse is public; the implementation details and operational data stay confidential. If you want to see the platform in action, the best way is to talk to me directly.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== CONTACT ============================== -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <header class="section-head reveal">
+        <h2>Start a conversation</h2>
+        <p>Like what you see? Let us talk about a role, a project, or a collaboration. I am open to full-stack builds, frontend work, deployment cleanups, internships, and partnerships.</p>
+      </header>
+      <div class="cta-row reveal">
+        <a href="mailto:mohdirfanr0329@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Open my GitHub</a>
+        <a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Connect on LinkedIn</a>
+      </div>
+      <p class="contact-plain reveal">Or write to <a href="mailto:mohdirfanr0329@gmail.com">mohdirfanr0329@gmail.com</a> directly.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer" data-cursor="light">
+    <div class="container footer-inner">
+      <p class="footer-name">Mohamed Irfan · Cloud &amp; Software Developer · Design, Build, Ship �</p>
+      <ul class="footer-links">
+        <li><a href="mailto:mohdirfanr0329@gmail.com">Email</a></li>
+        <li><a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+      <p class="footer-note">Designed and built the same way I would build yours.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+</body>
+</html>

@@ -1,434 +1,567 @@
 /**
- * Mohamed Irfan (Rizirfan) Portfolio Javascript Logic
- * Handles interactive animations, navigation, filters, and modal systems.
+ * Mohamed Irfan (Rizirfan) Portfolio - Interaction Layer
+ * Light editorial theme: reveals on scroll, a pinned story scene scrubbed by
+ * scroll progress, kinetic step text, a custom cursor, case-card tilt, and a
+ * pan/zoom lightbox. Everything degrades gracefully: no JS means a fully
+ * readable, static page, and reduced-motion users get a static layout.
  */
+(function () {
+  'use strict';
 
-// Project Data Repository
-const projectData = {
-  teledrive: {
-    title: "TeleDrive",
-    desc: "A production-ready cloud storage web application that uses Telegram channels as storage backends. By abstracting storage behind API workers, users never interact with Telegram directly. It persists metadata and message IDs in a PostgreSQL database, uploading and downloading files asynchronously via celery workers.",
-    tags: ["Python", "FastAPI", "React", "Tailwind CSS", "Redis", "Docker"],
-    image: "assets/teledrive.png",
-    github: "https://github.com/Rizirfan/Teledrive",
-    features: [
-      "Unified Telegram storage provider abstraction layer",
-      "Asynchronous chunked upload/download workers",
-      "Device tracking, refresh token rotation, and login history logs",
-      "Role-Based Access Control (RBAC) for admins and users",
-      "Redis task queueing with PostgreSQL metadata persistence"
-    ],
-    arch: [
-      "Backend: Python FastAPI, SQLAlchemy, Alembic, Redis",
-      "Frontend: React + TypeScript + Tailwind CSS",
-      "Infrastructure: Docker Compose & Nginx Proxy",
-      "Storage Backend: Telegram API via Telethon library"
-    ]
-  },
-  "personal-cloud": {
-    title: "Multi Drive",
-    desc: "Multi Drive (personal-cloud) is a single, aggregated web dashboard that connects multiple Google Drive storage profiles. It provides deep folder breadcrumb navigation, unified query searches across all connected repositories, storage consumption analysis, and encrypted credential sync using Firebase and Upstash Redis.",
-    tags: ["JavaScript", "Express", "Firebase", "React", "Vite"],
-    image: "assets/multidrive.png",
-    github: "https://github.com/Rizirfan/personal-cloud",
-    demo: "https://multi-drives.vercel.app/",
-    features: [
-      "Aggregated personal cloud dashboard across Google profiles",
-      "Root search capability that queries across all connected accounts",
-      "Dynamic folder traversal with breadcrumb navigation",
-      "Secure Firebase Admin JWT session validation",
-      "AES-256 token encryption prior to saving to Firestore"
-    ],
-    arch: [
-      "Client UI: React, Vite, and tailwind assets",
-      "Backend API: Node.js, Express, and Google Drive API integrations",
-      "Authentication & Cache: Firebase Auth and Upstash Redis",
-      "Deployment: Render (Backend) and Vercel (Client)"
-    ]
-  },
-  printhub: {
-    title: "PrintHub",
-    desc: "A secure, streamlined print queue management dashboard that simplifies cloud-coordinated document output. Built with strict TypeScript models to ensure robust state management and API communication workflows.",
-    tags: ["TypeScript", "React", "REST API", "State Management"],
-    image: "assets/mohd.png",
-    github: "https://github.com/Rizirfan/printhub",
-    features: [
-      "Real-time printer connectivity and queue monitors",
-      "OAuth verified user logins and document access controls",
-      "Document format validation and upload processing",
-      "Comprehensive logs for print activity audits"
-    ],
-    arch: [
-      "Client: React dashboard with customized hooks",
-      "Core Logic: TypeScript strict-mode typing and state management",
-      "API Integrations: JSON-based RESTful service endpoints"
-    ]
-  },
-  "via-sharing": {
-    title: "Via Sharing",
-    desc: "A lightning-fast web sharing utility that allows instant file exchanges and link sharing. Designed with clean modular TypeScript classes, offering temporary caching and download progress indications.",
-    tags: ["TypeScript", "Tailwind CSS", "Caching", "UX Design"],
-    image: "assets/filenest.png",
-    github: "https://github.com/Rizirfan/via-sharing",
-    features: [
-      "Dynamic link generation with optional password security",
-      "Clean, minimalist layout for visual appeal and accessibility",
-      "Real-time upload and download speed tracker metrics",
-      "Configurable file storage TTL (Time-To-Live) cache"
-    ],
-    arch: [
-      "Languages: TypeScript, HTML5, CSS3 styling",
-      "Styling framework: Tailwind CSS structure compatibility",
-      "Buffer: LocalStorage state cache and in-memory caches"
-    ]
-  },
-  "ihram-essentials": {
-    title: "Ihram Essentials",
-    desc: "An educational web guide and checklist tool designed to assist pilgrims preparing for Hajj and Umrah. Features custom inventory lists, pack checks, and guide directives to ensure pilgrims prepare their essentials correctly.",
-    tags: ["HTML5", "CSS3", "UX / UI", "Mobile Friendly"],
-    image: "assets/filenest.png",
-    github: "https://github.com/Rizirfan/Ihram-Essentials",
-    demo: "https://rizirfan.github.io/Ihram-Essentials/",
-    features: [
-      "Responsive checklists with persistent local storage",
-      "Direct guidelines and procedures categorized by journey phase",
-      "Travel checklist print support and offline availability",
-      "Highly accessible layout for mobile screens"
-    ],
-    arch: [
-      "Markup: Semantic HTML5 grid components",
-      "Styling: Vanilla CSS3 custom styles",
-      "Logic: Vanilla JavaScript LocalStorage interface"
-    ]
-  },
-  "crypto-price-checker": {
-    title: "Crypto Price Checker",
-    desc: "A client-side cryptocurrency price comparison utility. Queries public ticker APIs to present real-time rates, price sparklines, and sorting options in a glassmorphic dashboard.",
-    tags: ["HTML5", "CSS Grid", "Vanilla JS", "API Integration"],
-    image: "assets/filenest.png",
-    github: "https://github.com/Rizirfan/Crypto-price-Checker-",
-    demo: "https://rizirfan.github.io/Crypto-price-Checker-/",
-    features: [
-      "Real-time API currency exchange data streams",
-      "Sparkline graphs displaying historical pricing trends",
-      "Custom column filtering and sorting rules",
-      "Responsive dark glassmorphic dashboard UI styling"
-    ],
-    arch: [
-      "Frontend: HTML5 and CSS Grid layout",
-      "API layer: Client-side fetch streams",
-      "Logic: ES6 Vanilla JavaScript classes"
-    ]
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer =
+    window.matchMedia('(pointer: fine)').matches &&
+    !window.matchMedia('(hover: none)').matches;
+
+  var clamp = function (v, lo, hi) {
+    return Math.max(lo, Math.min(hi, v));
+  };
+
+  var smooth = function (v) {
+    return v * v * (3 - 2 * v);
+  };
+
+  var easeIn = function (v) {
+    return 1 - Math.pow(1 - v, 3);
+  };
+
+  function $(sel, ctx) {
+    return (ctx || document).querySelector(sel);
   }
-};
 
-document.addEventListener("DOMContentLoaded", () => {
-  setupThemeToggle();
-  setupNavigation();
-  setupProjectsFilter();
-  setupModalSystem();
-  setupContactForm();
-});
+  function $$(sel, ctx) {
+    return Array.prototype.slice.call((ctx || document).querySelectorAll(sel));
+  }
 
-/**
- * 1. Navigation Scrolled Styles & Active Link Highlight
- */
-function setupNavigation() {
-  const header = document.getElementById("header");
-  const burger = document.querySelector(".burger");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const navLinks = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll("section");
-
-  // Scroll event for header glow
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 40) {
-      header.classList.add("header--scrolled");
+  function onReady(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
     } else {
-      header.classList.remove("header--scrolled");
+      fn();
     }
+  }
 
-    // Scroll active link highlight tracking
-    let currentSection = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (window.scrollY >= sectionTop - 120) {
-        currentSection = section.getAttribute("id");
-      }
-    });
+  /* ======================================================================
+     Hero headline: split into word spans, then animate in with a stagger.
+     ====================================================================== */
+  function splitHeroTitle() {
+    var title = document.querySelector('.hero-title');
+    if (!title) return;
 
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${currentSection}`) {
-        link.classList.add("active");
-      }
-    });
-  });
+    var words = title.textContent.trim().split(/\s+/);
+    title.innerHTML = words
+      .map(function (w, i) {
+        return '<span class="hti" style="--hti-d:' + (110 + i * 38) + 'ms">' + w + '</span>';
+      })
+      .join(' ');
 
-  // Mobile navigation drawer toggle
-  burger.addEventListener("click", () => {
-    const isOpen = mobileMenu.classList.toggle("mobile-menu--open");
-    burger.classList.toggle("burger--active");
-    burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    mobileMenu.setAttribute("aria-hidden", isOpen ? "false" : "true");
-  });
-
-  // Close mobile navigation drawer when link clicked
-  mobileMenu.addEventListener("click", (e) => {
-    if (e.target.classList.contains("nav-link") || e.target.classList.contains("btn")) {
-      mobileMenu.classList.remove("mobile-menu--open");
-      burger.classList.remove("burger--active");
-      burger.setAttribute("aria-expanded", "false");
-      mobileMenu.setAttribute("aria-hidden", "true");
-    }
-  });
-}
-
-/**
- * 2. Projects Filter Tabs Handler
- */
-function setupProjectsFilter() {
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const projectCards = document.querySelectorAll(".project-card");
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Toggle active tab class
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const filterVal = btn.getAttribute("data-filter");
-
-      projectCards.forEach((card) => {
-        const categories = card.getAttribute("data-category").split(" ");
-        if (filterVal === "all" || categories.includes(filterVal)) {
-          card.style.display = "flex";
-          // Quick entry animation
-          card.style.opacity = "0";
-          card.style.transform = "translateY(10px)";
-          setTimeout(() => {
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-            card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-          }, 50);
-        } else {
-          card.style.display = "none";
-        }
+    title.classList.add('pre-shift');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        title.classList.add('is-in');
       });
     });
-  });
-}
+  }
 
-/**
- * 3. Modal details populating logic
- */
-function setupModalSystem() {
-  const modal = document.getElementById("projectModal");
-  const modalImg = document.getElementById("modalImg");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalTags = document.getElementById("modalTags");
-  const modalDesc = document.getElementById("modalDesc");
-  const modalFeatures = document.getElementById("modalFeatures");
-  const modalArch = document.getElementById("modalArch");
-  const modalGithubBtn = document.getElementById("modalGithubBtn");
-  const modalDemoBtn = document.getElementById("modalDemoBtn");
-  
-  const closeBtn = document.getElementById("modalCloseBtn");
-  const closeActionBtn = document.getElementById("modalCloseActionBtn");
+  /* ======================================================================
+     Reveals: fade-and-rise elements into view once, on intersect.
+     ====================================================================== */
+  function setupReveals() {
+    var els = $$('.reveal');
 
-  // Opens the modal and populates it with matching project config details
-  function openModal(projectId) {
-    const data = projectData[projectId];
-    if (!data) return;
+    els.forEach(function (el) {
+      el.classList.add('pre-reveal');
+    });
 
-    // Set simple details
-    modalImg.src = data.image;
-    modalImg.alt = `${data.title} Mockup`;
-    modalTitle.textContent = data.title;
-    modalDesc.textContent = data.desc;
-    modalGithubBtn.href = data.github;
-
-    // Toggle live demo button
-    if (data.demo) {
-      modalDemoBtn.href = data.demo;
-      modalDemoBtn.style.display = "inline-flex";
-    } else {
-      modalDemoBtn.style.display = "none";
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) {
+        el.classList.remove('pre-reveal');
+        el.classList.add('is-visible');
+      });
+      return;
     }
 
-    // Populate tags
-    modalTags.innerHTML = "";
-    data.tags.forEach((tag) => {
-      const li = document.createElement("li");
-      li.className = "tag";
-      li.textContent = tag;
-      modalTags.appendChild(li);
-    });
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          io.unobserve(el);
+          el.classList.remove('pre-reveal');
+          el.classList.add('is-visible');
+          setTimeout(function () {
+            el.classList.remove('reveal');
+          }, 1000);
+        });
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -6% 0px' }
+    );
 
-    // Populate features
-    modalFeatures.innerHTML = "";
-    data.features.forEach((feature) => {
-      const li = document.createElement("li");
-      li.textContent = feature;
-      modalFeatures.appendChild(li);
+    els.forEach(function (el) {
+      io.observe(el);
     });
-
-    // Populate architecture details
-    modalArch.innerHTML = "";
-    data.arch.forEach((detail) => {
-      const li = document.createElement("li");
-      li.textContent = detail;
-      modalArch.appendChild(li);
-    });
-
-    // Toggle overlay visibility
-    modal.classList.add("modal-backdrop--open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden"; // Prevent background body scroll
   }
 
-  function closeModal() {
-    modal.classList.remove("modal-backdrop--open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = ""; // Restore background scroll
-  }
+  /* ======================================================================
+     Story section: pinned stage + scrubbed frames + parading steps.
+     Only engaged on fine-pointer desktop viewports without reduced motion.
+     ====================================================================== */
+  function setupStory() {
+    var section = document.getElementById('approach');
+    if (!section) return;
 
-  // Bind clicks on project card overlay / trigger buttons
-  document.addEventListener("click", (e) => {
-    // 1. Overlay card media click
-    const cardOverlay = e.target.closest(".project-card__overlay");
-    if (cardOverlay) {
-      const card = cardOverlay.closest(".project-card");
-      if (card) {
-        const projectId = card.getAttribute("data-project-id");
-        openModal(projectId);
-        return;
+    var track = $('.story-track', section);
+    var stepsBox = $('.story-steps', section);
+    var textStage = $('.story-text-stage', section);
+    var stepEls = $$('.story-step', section);
+    var dots = $$('.story-progress li', section);
+    var scene = $('#storyScene');
+    var plate = scene ? $('#scPlate', scene) : null;
+    var frames = scene ? $$('.sc-frame', scene) : [];
+    var navH = function () {
+      return (document.querySelector('.site-nav') || { offsetHeight: 76 }).offsetHeight;
+    };
+
+    var engaged = !reduceMotion && window.innerWidth > 900;
+
+    if (!engaged) {
+      stepEls.forEach(function (el) { el.classList.add('is-active'); });
+      return;
+    }
+
+    /* Geometry for the text-stage parade, refreshed on resize. */
+    var midP = [0.17, 0.51, 0.84];
+    var targets = [];
+    var boxHeight = 0;
+
+    function measure() {
+      boxHeight = stepsBox.clientHeight;
+      targets = stepEls.map(function (el) {
+        return (boxHeight - el.offsetHeight) / 2 - el.offsetTop;
+      });
+    }
+
+    function piecewise(p, xs, ys) {
+      if (p <= xs[0]) return ys[0];
+      if (p >= xs[xs.length - 1]) return ys[ys.length - 1];
+      for (var i = 0; i < xs.length - 1; i++) {
+        if (p <= xs[i + 1]) {
+          var f = (p - xs[i]) / (xs[i + 1] - xs[i]);
+          return ys[i] + (ys[i + 1] - ys[i]) * f;
+        }
+      }
+      return ys[ys.length - 1];
+    }
+
+    function progressOf() {
+      var rect = track.getBoundingClientRect();
+      var winH = window.innerHeight;
+      var runway = rect.height - (winH - navH());
+      if (runway <= 0) return 1;
+      var p = (navH() - rect.top) / runway;
+      return clamp(p, 0, 1);
+    }
+
+    function applyFrame(f, p) {
+      var t0 = parseFloat(f.getAttribute('data-t0'));
+      var t1 = parseFloat(f.getAttribute('data-t1'));
+      var o =
+        smooth(clamp((p - t0) / 0.05, 0, 1)) *
+        (1 - smooth(clamp((p - (t1 - 0.05)) / 0.05, 0, 1)));
+      f.style.opacity = String(o);
+      f.style.transform = 'translate3d(0, ' + (1 - o) * 14 + 'px, 0)';
+      f.style.visibility = o < 0.01 ? 'hidden' : 'visible';
+    }
+
+    function render(p) {
+      /* Frames */
+      frames.forEach(function (f) {
+        applyFrame(f, p);
+      });
+      if (plate) {
+        var po = smooth(clamp(p / 0.08, 0, 1));
+        plate.style.opacity = String(po);
+        plate.style.visibility = po < 0.01 ? 'hidden' : 'visible';
+      }
+
+      /* Stage button / progress / step activation */
+      var stepIndex = p >= 0.68 ? 2 : p >= 0.34 ? 1 : 0;
+
+      section.setAttribute('data-active', String(stepIndex));
+      stepEls.forEach(function (el, i) {
+        el.classList.toggle('is-active', i === stepIndex);
+      });
+
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('is-active', i === stepIndex);
+        var prog = 0;
+        if (i === stepIndex) {
+          prog = stepIndex === 0 ? clamp(p / 0.34, 0, 1)
+            : stepIndex === 1 ? clamp((p - 0.34) / 0.34, 0, 1)
+            : clamp((p - 0.68) / 0.32, 0, 1);
+        }
+        dot.style.setProperty('--prog', prog.toFixed(3));
+      });
+
+      /* Parade */
+      if (targets.length) {
+        textStage.style.transform =
+          'translate3d(0, ' + piecewise(p, midP, targets) + 'px, 0)';
       }
     }
 
-    // 2. Trigger button click
-    const triggerBtn = e.target.closest(".btn-modal-trigger");
-    if (triggerBtn) {
-      const projectId = triggerBtn.getAttribute("data-project-id");
-      openModal(projectId);
-      return;
+    var ticking = false;
+    var lastP = -1;
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var p = progressOf();
+        render(p);
+        lastP = p;
+        ticking = false;
+      });
     }
 
-    // 3. Hero card featured thumbnail click
-    const featuredThumb = e.target.closest(".featured-thumb");
-    if (featuredThumb) {
-      const projectId = featuredThumb.getAttribute("data-target");
-      openModal(projectId);
-      return;
-    }
-  });
-
-  // Bind close buttons
-  closeBtn.addEventListener("click", closeModal);
-  closeActionBtn.addEventListener("click", closeModal);
-
-  // Close on backdrop click
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  // Close on ESC key press
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("modal-backdrop--open")) {
-      closeModal();
-    }
-  });
-}
-
-/**
- * 4. Micro-interactions: Contact Form Submit toast
- */
-function setupContactForm() {
-  const form = document.getElementById("contactForm");
-  if (!form) return;
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-
-    // Perform interactive feedback loop
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
-    submitBtn.style.background = "var(--secondary)";
-    submitBtn.style.boxShadow = "0 4px 12px var(--secondary-glow)";
-
-    const formData = new FormData(form);
-
-    fetch("https://formsubmit.co/ajax/mohdirfanr0329@gmail.com", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-      submitBtn.textContent = "Message Sent! Thank you.";
-      submitBtn.style.background = "var(--success)";
-      submitBtn.style.boxShadow = "0 4px 12px rgba(16, 185, 129, 0.3)";
-      form.reset();
-
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        submitBtn.style.background = "";
-        submitBtn.style.boxShadow = "";
-      }, 3000);
-    })
-    .catch(error => {
-      console.error("Error submitting contact form:", error);
-      submitBtn.textContent = "Error! Please try again.";
-      submitBtn.style.background = "var(--accent)";
-      submitBtn.style.boxShadow = "0 4px 12px rgba(236, 72, 153, 0.3)";
-      
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        submitBtn.style.background = "";
-        submitBtn.style.boxShadow = "";
-      }, 3000);
+    dots.forEach(function (dot) {
+      var btn = $('.story-progress-num', dot);
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var i = Number(dot.getAttribute('data-dot'));
+        var p = midP[i];
+        var rect = track.getBoundingClientRect();
+        var winH = window.innerHeight;
+        var top = rect.top + window.scrollY;
+        var target = top + p * (rect.height - (winH - navH())) - navH();
+        var behavior = reduceMotion ? 'auto' : 'smooth';
+        window.scrollTo({ top: Math.max(0, target), behavior: behavior });
+      });
     });
+
+    measure();
+    render(lastP >= 0 ? lastP : 0);
+    onScroll();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () {
+      measure();
+      onScroll();
+    });
+  }
+
+  /* ======================================================================
+     Kinetic lead-in text: stagger per-letter reveal on activation.
+     ====================================================================== */
+  function setupLeadIns() {
+    $$('.story-lead-in').forEach(function (lead) {
+      $$('.kti', lead).forEach(function (k, i) {
+        k.style.setProperty('--kti-d', 60 + i * 32 + 'ms');
+      });
+    });
+  }
+
+  /* ======================================================================
+     Nav elevation state once the page scrolls.
+     ====================================================================== */
+  function setupNav() {
+    var nav = document.querySelector('.site-nav');
+    if (!nav) return;
+    var onScroll = function () {
+      nav.classList.toggle('is-scrolled', window.scrollY > 12);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ======================================================================
+     Case thumbnail pointer tilt.
+     ====================================================================== */
+  function setupTilt() {
+    if (reduceMotion || !finePointer) return;
+    $$('.case-thumb').forEach(function (thumb) {
+      thumb.addEventListener('pointermove', function (e) {
+        var r = thumb.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        thumb.style.setProperty('--rx', (py * -7).toFixed(2) + 'deg');
+        thumb.style.setProperty('--ry', (px * 8).toFixed(2) + 'deg');
+      });
+      thumb.addEventListener('pointerleave', function () {
+        thumb.style.setProperty('--rx', '0deg');
+        thumb.style.setProperty('--ry', '0deg');
+      });
+    });
+  }
+
+  /* ======================================================================
+     Custom cursor: instant dot + eased ring. Light/dark aware.
+     ====================================================================== */
+  function setupCursor() {
+    if (reduceMotion || !finePointer) return;
+
+    var dot = document.querySelector('.cursor-dot');
+    var ring = document.querySelector('.cursor-ring');
+    if (!dot || !ring) return;
+
+    var tx = -100,
+      ty = -100,
+      rx = -100,
+      ry = -100,
+      shown = false;
+
+    document.addEventListener(
+      'pointermove',
+      function (e) {
+        tx = e.clientX;
+        ty = e.clientY;
+        if (!shown) {
+          rx = tx;
+          ry = ty;
+          shown = true;
+          place(dot, tx, ty, 6);
+          place(ring, rx, ry, 34);
+        }
+        var t = e.target.closest
+          ? e.target.closest('a, button, [data-cursor], .about-media')
+          : null;
+        ring.classList.toggle('is-hover', !!t);
+        var zone = e.target.closest ? e.target.closest('[data-cursor]') : null;
+        var isLight = zone && zone.getAttribute('data-cursor') === 'light';
+        dot.classList.toggle('is-light', isLight);
+        ring.classList.toggle('is-light', isLight);
+      },
+      { passive: true }
+    );
+
+    function place(el, x, y, size) {
+      el.style.transform =
+        'translate3d(' + (x - size / 2) + 'px, ' + (y - size / 2) + 'px, 0)';
+    }
+
+    (function loop() {
+      rx += (tx - rx) * 0.2;
+      ry += (ty - ry) * 0.2;
+      if (shown) {
+        place(dot, tx, ty, 6);
+        var ringSize = ring.classList.contains('is-hover') ? 52 : 34;
+        place(ring, rx, ry, ringSize);
+      }
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ======================================================================
+     Lightbox: pan / zoom image preview for [data-zoom] links.
+     ====================================================================== */
+  function setupLightbox() {
+    if (!('PointerEvent' in window)) return;
+
+    var links = $$('a[data-zoom]');
+    if (!links.length) return;
+
+    var box = null;
+    var img = null;
+    var caption = null;
+    var closeBtn = null;
+    var scale = 1;
+    var tx = 0,
+      ty = 0;
+    var dragging = false;
+    var dragStartX = 0,
+      dragStartY = 0,
+      dragBaseX = 0,
+      dragBaseY = 0;
+    var lastFocus = null;
+
+    function build() {
+      box = document.createElement('div');
+      box.className = 'ah-lightbox';
+      box.setAttribute('role', 'dialog');
+      box.setAttribute('aria-modal', 'true');
+      box.setAttribute('aria-label', 'Image preview');
+      box.tabIndex = -1;
+
+      closeBtn = document.createElement('button');
+      closeBtn.className = 'ah-lightbox-close';
+      closeBtn.setAttribute('aria-label', 'Close preview');
+      closeBtn.innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>';
+      box.appendChild(closeBtn);
+
+      var figure = document.createElement('figure');
+      figure.className = 'ah-lightbox-figure';
+      img = document.createElement('img');
+      img.alt = '';
+      figure.appendChild(img);
+      caption = document.createElement('figcaption');
+      caption.className = 'ah-lightbox-caption';
+      figure.appendChild(caption);
+      box.appendChild(figure);
+
+      var hint = document.createElement('p');
+      hint.className = 'ah-lightbox-hint';
+      hint.textContent = 'Scroll to zoom · Drag to pan · Esc to close';
+      box.appendChild(hint);
+
+      document.body.appendChild(box);
+
+      closeBtn.addEventListener('click', close);
+      box.addEventListener('click', function (e) {
+        if (e.target === box) close();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (box.classList.contains('is-open') && e.key === 'Escape') close();
+      });
+
+      box.addEventListener('wheel', onWheel, { passive: false });
+      img.addEventListener('pointerdown', onPointerDown);
+      window.addEventListener('pointermove', onPointerMove, { passive: false });
+      window.addEventListener('pointerup', onPointerUp);
+      document.addEventListener('dblclick', onDoubleClick);
+    }
+
+    function open(link) {
+      if (!box) build();
+
+      lastFocus = document.activeElement;
+      var src = link.getAttribute('href');
+      var alt = link.getAttribute('data-zoom-alt') || '';
+      caption.textContent = link.getAttribute('data-zoom-caption') || '';
+      caption.style.display = caption.textContent ? 'grid' : 'grid';
+
+      resetView();
+      img.style.opacity = '0';
+      box.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+
+      var preload = new Image();
+      preload.onload = function () {
+        img.src = preload.src;
+        img.alt = alt;
+        img.style.opacity = '1';
+      };
+      preload.src = src;
+
+      requestAnimationFrame(function () {
+        closeBtn.focus();
+      });
+    }
+
+    function resetView() {
+      scale = 1;
+      tx = 0;
+      ty = 0;
+      if (img) {
+        img.style.transform = 'translate(0px, 0px) scale(1)';
+        img.style.transition = 'opacity 0.3s ease';
+      }
+    }
+
+    function apply() {
+      var halfW = (img.clientWidth * scale) / 2;
+      var halfH = (img.clientHeight * scale) / 2;
+      tx = clamp(tx, -halfW, halfW);
+      ty = clamp(ty, -halfH, halfH);
+      img.style.transform =
+        'translate(' + tx + 'px, ' + ty + 'px) scale(' + scale + ')';
+    }
+
+    function onWheel(e) {
+      e.preventDefault();
+      var rect = box.getBoundingClientRect();
+      var mx = e.clientX - rect.left - rect.width / 2;
+      var my = e.clientY - rect.top - rect.height / 2;
+      var k = Math.exp(-e.deltaY * 0.0012);
+      var ns = clamp(scale * k, 1, 6);
+      if (ns === scale) return;
+      tx = mx - (mx / scale) * ns;
+      ty = my - (my / scale) * ns;
+      scale = ns;
+      img.style.transition = 'none';
+      apply();
+    }
+
+    function onPointerDown(e) {
+      if (!box.classList.contains('is-open')) return;
+      dragging = true;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      dragBaseX = tx;
+      dragBaseY = ty;
+      img.classList.add('is-dragging');
+      img.style.transition = 'none';
+      img.setPointerCapture && img.setPointerCapture(e.pointerId);
+    }
+
+    function onPointerMove(e) {
+      if (!dragging || !box || !box.classList.contains('is-open')) return;
+      tx = dragBaseX + (e.clientX - dragStartX);
+      ty = dragBaseY + (e.clientY - dragStartY);
+      apply();
+    }
+
+    function onPointerUp() {
+      if (!dragging) return;
+      dragging = false;
+      img.classList.remove('is-dragging');
+    }
+
+    function onDoubleClick() {
+      if (!box.classList.contains('is-open')) return;
+      if (scale > 1) {
+        resetView();
+      } else {
+        scale = 2;
+        img.style.transition = 'none';
+        apply();
+      }
+    }
+
+    function close() {
+      if (!box) return;
+      box.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        open(link);
+      });
+    });
+  }
+
+  /* ======================================================================
+     Generic smooth-scroll for in-page anchors (styling handles offset).
+     Native CSS scroll-behavior covers the rest.
+     ====================================================================== */
+  function setupAnchors() {
+    if (!('scrollBehavior' in document.documentElement.style)) {
+      $$('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = a.getAttribute('href');
+          if (id.length < 2) return;
+          var target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        });
+      });
+    }
+  }
+
+  /* ====================================================================== */
+  onReady(function () {
+    splitHeroTitle();
+    setupReveals();
+    setupLeadIns();
+    setupStory();
+    setupNav();
+    setupTilt();
+    setupCursor();
+    setupLightbox();
+    setupAnchors();
   });
-}
-
-/**
- * 5. Theme Toggling (Dark & Light Mode) with LocalStorage Persistence
- */
-function setupThemeToggle() {
-  const toggleBtn = document.getElementById("themeToggle");
-  const toggleBtnMobile = document.getElementById("themeToggleMobile");
-  
-  // Check localStorage or system theme preference
-  const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  
-  // Set default theme to dark if no saved preference, or use saved one
-  let activeTheme = savedTheme ? savedTheme : (prefersDark ? "dark" : "light");
-  
-  // Apply the theme to html element attribute
-  document.documentElement.setAttribute("data-theme", activeTheme);
-  localStorage.setItem("theme", activeTheme);
-
-  function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    const newTheme = currentTheme === "light" ? "dark" : "light";
-    
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  }
-
-  // Bind clicks
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", toggleTheme);
-  }
-  if (toggleBtnMobile) {
-    toggleBtnMobile.addEventListener("click", toggleTheme);
-  }
-}
+})();

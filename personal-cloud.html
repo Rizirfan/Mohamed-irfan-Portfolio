@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#FAF9F6" />
+  <title>Personal Cloud | Mohamed Irfan</title>
+  <meta name="description" content="Personal Cloud: a self-hosted, Dockerized cloud storage platform. Architecture, workflow, and the technical concepts behind it." />
+
+  <link rel="icon" href="assets/avatar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400&family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-cursor="dark">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============================== NAVIGATION ============================== -->
+  <nav class="site-nav" id="siteNav">
+    <div class="container nav-inner">
+      <button class="logo-btn" aria-label="Mohamed Irfan home" onclick="window.location.href='index.html'">
+        <span class="logo-mark" aria-hidden="true">Mohamed Irfan</span>
+      </button>
+      <ul class="nav-links" aria-label="Site sections">
+        <li><a href="index.html#work" class="is-current">Work</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#approach">Approach</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="mailto:mohdirfanr0329@gmail.com" class="icon-link" aria-label="Email Mohamed Irfan">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <span class="icon-link-label">Email</span>
+        </a>
+        <a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Visit Mohamed Irfan's GitHub profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <span class="icon-link-label">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Visit Mohamed Irfan's LinkedIn profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2c.5-1 1.8-2.2 4-2.2 4.3 0 5.2 2.8 5.2 6.5V24h-4v-8.5c0-2-.3-4.5-2.7-4.5-2.7 0-3.1 2.1-3.1 4.3V24h-4V8z"/></svg>
+          <span class="icon-link-label">LinkedIn</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- ============================== PAGE HEADER ============================== -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="hero-eyebrow reveal">Project · Cloud Platform</p>
+        <h1 class="page-title reveal">Personal Cloud</h1>
+        <p class="page-intro reveal">A self-hosted cloud storage platform, packaged and deployed with Docker, so files live in infrastructure you control instead of a third-party account you do not.</p>
+        <div class="tag-row reveal">
+          <span class="tag">Docker</span>
+          <span class="tag">Containerization</span>
+          <span class="tag">Cloud Storage</span>
+          <span class="tag">Python</span>
+          <span class="tag">Backend</span>
+        </div>
+        <div class="badge-row reveal">
+          <span class="badge badge-accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>Open source</span>
+          <span class="badge">Runnable with Docker</span>
+          <span class="badge">Self-hosted</span>
+        </div>
+        <div class="cta-row reveal">
+          <a href="https://github.com/Rizirfan/personal-cloud" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on GitHub</a>
+          <a href="index.html#work" class="btn btn-ghost">Back to all work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== PROJECT BODY ============================== -->
+    <section class="case-body">
+      <div class="container">
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Overview</h2>
+          </header>
+          <p class="long-lede reveal">Personal Cloud is a self-hosted cloud storage platform designed to provide users with a private and centralized environment for storing, managing, and accessing their files.</p>
+          <div class="prose">
+            <p class="reveal">The primary objective is a cloud-storage solution deployed and managed independently using Docker containerization. Instead of depending entirely on third-party providers, the platform gives users a controlled environment where storage services are hosted and managed by the person or organization that runs it.</p>
+          </div>
+        </div>
+
+        <!-- ============================== SCREENSHOTS ============================== -->
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Screenshots</h2>
+          </header>
+          <div class="shot-grid one">
+            <a class="shot reveal" href="assets/Personal Cloud/1781503589450.jpg" data-zoom="" data-zoom-caption="Personal Cloud" data-zoom-alt="Personal Cloud application screenshot" aria-label="Open the full Personal Cloud screenshot">
+              <img src="assets/Personal Cloud/1781503589450.jpg" alt="Personal Cloud application screenshot" loading="lazy" decoding="async">
+            </a>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Problem statement</h2>
+          </header>
+          <div class="callout reveal">
+            <h3>The gap</h3>
+            <p>Traditional cloud-storage platforms provide convenient file storage, but users have limited control over the underlying infrastructure, deployment environment, and data-management architecture. Personal Cloud addresses this with a self-managed storage environment where the application and its supporting services run as isolated containers.</p>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Objectives</h2>
+          </header>
+          <div class="feature-block reveal">
+            <ul class="dlist c2">
+              <li>Provide centralized personal file storage.</li>
+              <li>Enable access to files through a unified platform.</li>
+              <li>Containerize the application for simplified deployment.</li>
+              <li>Separate application services from the host system.</li>
+              <li>Provide a scalable foundation for more cloud-storage features.</li>
+              <li>Improve portability between development and deployment environments.</li>
+              <li>Establish a foundation for secure, self-managed data storage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Core features</h2>
+          </header>
+          <div class="grid-2 stagger">
+            <div class="feature-block reveal">
+              <h3>File management</h3>
+              <p>The platform is built around the common cloud-storage operations.</p>
+              <ul class="dlist">
+                <li>Upload files</li>
+                <li>Download files</li>
+                <li>Store files</li>
+                <li>Organize files</li>
+                <li>Access stored files</li>
+                <li>Manage stored data</li>
+              </ul>
+            </div>
+            <div class="feature-block reveal">
+              <h3>Dockerized deployment</h3>
+              <p>Docker packages the application and its dependencies into containers, which delivers:</p>
+              <ul class="dlist">
+                <li>Consistent deployment environments</li>
+                <li>Easier installation</li>
+                <li>Service isolation</li>
+                <li>Portability between hosts</li>
+                <li>Simplified configuration</li>
+                <li>Easier application maintenance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Get started</h2>
+            <p>Personal Cloud is open source and runnable in minutes with Docker. Clone the repository and follow the README.</p>
+          </header>
+          <div class="quickstart reveal">
+            <div class="quickstep"><b>1</b> git clone https://github.com/Rizirfan/personal-cloud</div>
+            <div class="quickstep"><b>2</b> cd personal-cloud</div>
+            <div class="quickstep"><b>3</b> docker compose up</div>
+          </div>
+          <pre class="code-card reveal">docker compose up -d
+docker ps
+# app container  ->  storage service container  ->  persistent volume</pre>
+          <div class="notice reveal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.8 15.9 3.7 21v-6.6a8.2 8.2 0 1 1 7.1 1.5Z"></path><path d="m9.4 14.5 6-6"></path><path d="M9.4 14.5c-1.4 3.5-2.4 5-4 6.5"></path><path d="M6 17.5 4 20"></path><path d="M20 4c0 3-1.5 5-4.5 7-2 1.3-3 1.6-5 2"></path></svg>
+            <p><b>Made to be used.</b> Fork it, run it, adapt it. The exact ports, environment variables, and compose services are documented in the README, so anyone can self-host their own private cloud.</p>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Architecture</h2>
+            <p>Requests flow from the user down through the application into persistent storage, with each layer containerized.</p>
+          </header>
+          <div class="flow reveal">
+            <span class="flow-node">User</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Web / Application</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Application Container</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Storage Service Container</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Persistent Storage</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">User Files</span>
+          </div>
+
+          <p class="prose">
+            <span class="reveal" style="display:block;margin-top:28px;">The system is organized as independent services. Persistent Docker volumes keep stored data alive even when application containers are recreated.</span>
+          </p>
+          <pre class="code-card reveal">Docker Host
+├── Application Container
+│     └── Cloud Storage Application
+├── Database Container
+│     └── User / Application Metadata
+└── Storage Volume
+      └── Uploaded Files</pre>
+        </div>
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Technical concepts</h2>
+          </header>
+          <div class="tag-row reveal">
+            <span class="tag">Docker</span>
+            <span class="tag">Containerization</span>
+            <span class="tag">Persistent Volumes</span>
+            <span class="tag">Cloud Storage</span>
+            <span class="tag">File Management</span>
+            <span class="tag">Application Deployment</span>
+            <span class="tag">Service Architecture</span>
+            <span class="tag">Storage Management</span>
+            <span class="tag">Backend Development</span>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Project workflow</h2>
+            <p>Every action traces the same path from user input to persistent file storage.</p>
+          </header>
+          <div class="flow reveal">
+            <span class="flow-node">User</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Authentication</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Cloud Storage Interface</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Upload / Download Request</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Application Service</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Storage Layer</span>
+            <span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+            <span class="flow-node">Persistent File Storage</span>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <header class="block-head reveal">
+            <h2>Development focus</h2>
+            <p>The project builds practical exposure in the areas that matter for production software.</p>
+          </header>
+          <div class="feature-block reveal">
+            <ul class="dlist c2">
+              <li>Container-based application deployment</li>
+              <li>Storage architecture</li>
+              <li>Backend service organization</li>
+              <li>Persistent data management</li>
+              <li>Cloud-platform concepts</li>
+              <li>Application-service isolation</li>
+              <li>Deployment and configuration management</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== CONTACT ============================== -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <header class="section-head reveal">
+        <h2>Start a conversation</h2>
+        <p>Like what you see? Let us talk about a role, a project, or a collaboration. I am open to full-stack builds, frontend work, deployment cleanups, internships, and partnerships.</p>
+      </header>
+      <div class="cta-row reveal">
+        <a href="mailto:mohdirfanr0329@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Open my GitHub</a>
+        <a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Connect on LinkedIn</a>
+      </div>
+      <p class="contact-plain reveal">Or write to <a href="mailto:mohdirfanr0329@gmail.com">mohdirfanr0329@gmail.com</a> directly.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer" data-cursor="light">
+    <div class="container footer-inner">
+      <p class="footer-name">Mohamed Irfan · Cloud &amp; Software Developer · Design, Build, Ship �</p>
+      <ul class="footer-links">
+        <li><a href="mailto:mohdirfanr0329@gmail.com">Email</a></li>
+        <li><a href="https://github.com/Rizirfan" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/mohamed-irfan-rizwan-49558632b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+      <p class="footer-note">Designed and built the same way I would build yours.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+</body>
+</html>
